@@ -164,7 +164,21 @@ class Dashboard(tk.Frame):
 
 class Completed(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, background="#1c2e3e")
         self.controller = controller
+
+        self.manageAct = manageActivity(self)#, modelActivity()) ->belum ada modelnya
+
+        #===================== Completed Frame =====================
+
+        self.centralframe = Frame(self, background="#1c2e3e")
+        self.centralframe.pack(ipady=700, ipadx=700, pady=35)
+
+        self.lbl = Label(self.centralframe, text="COMPLETED", font=HEADING1, background="#1c2e3e", borderwidth=0, fg="white")
+        self.lbl.pack(anchor="n", pady=20)
+
+        self.categorycentralframe = Frame(self.centralframe, background="#1c2e3e")
+        self.categorycentralframe.pack(ipadx=600, ipady=10, pady=40)
+
 
     
