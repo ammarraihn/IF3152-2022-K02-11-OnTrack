@@ -6,7 +6,15 @@ class databaseManager():
         pass
 
     def addToDb(self, activityName, category, deadline):
-        pass
+        mydb = mysql.connector.connect(host = "localhost", user = "root", password = "qwerty123", database = "ontrack", auth_plugin = "mysql_native_password")
+        cursor = mydb.cursor()
+        cursor.execute("INSERT INTO list_of_activities (ActivityName, CategoryName, Deadline, isDone) VALUES ('{}', '{}', '{}', FALSE)".format(
+            activityName, 
+            category, 
+            deadline
+        ))
+        mydb.commit()
+        mydb.close()
 
     def delInDb(self, vals):
         pass
