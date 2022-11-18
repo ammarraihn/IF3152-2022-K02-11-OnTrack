@@ -153,10 +153,13 @@ class Dashboard(tk.Frame):
 
     # fetch record ongoing
     def fetchOngoingData(self):
-        pass
+        self.ongoing_records.delete(*self.ongoing_records.get_children()) # Reset treeviewnya
+
+        
     # fetch record idle
     def fetchIdleData(self): 
-        pass
+        self.idle_records.delete(*self.idle_records.get_children())# Reset treeviewnya
+
 
     def refetchData(self):
         self.fetchOngoingData()
