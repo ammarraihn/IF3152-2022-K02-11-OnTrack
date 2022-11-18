@@ -155,10 +155,24 @@ class Dashboard(tk.Frame):
     def fetchOngoingData(self):
         self.ongoing_records.delete(*self.ongoing_records.get_children()) # Reset treeviewnya
 
+        result = self.manageAct.activityModel.selectOngoingDb()
+
+        if len(result) != 0:
+            self.ongoing_records.delete(*self.ongoing_records.get_children())
+            for row in result:
+                self.ongoing_records.insert('', END, values= row)
+
         
     # fetch record idle
     def fetchIdleData(self): 
         self.idle_records.delete(*self.idle_records.get_children())# Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectIdleDb()
+        
+        if len(result) != 0:
+            self.idle_records.delete(*self.idle_records.get_children())
+            for row in result:
+                self.idle_records.insert('', END, values= row)
 
 
     def refetchData(self):
