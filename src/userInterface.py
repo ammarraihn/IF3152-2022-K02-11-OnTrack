@@ -167,7 +167,161 @@ class Dashboard(tk.Frame):
 
 class Completed(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, background="#1c2e3e")
         self.controller = controller
 
+        self.manageAct = manageActivity(self)#, modelActivity()) ->belum ada modelnya
+
+        #===================== Completed Frame =====================
+
+        self.centralframe = Frame(self, background="#1c2e3e")
+        self.centralframe.pack(ipady=700, ipadx=700, pady=35)
+
+        self.lbl = Label(self.centralframe, text="COMPLETED", font=HEADING1, background="#1c2e3e", borderwidth=0, fg="white")
+        self.lbl.pack(anchor="n", pady=20)
+
+        self.categorycentralframe = Frame(self.centralframe, background="#1c2e3e")
+        self.categorycentralframe.pack(ipadx=600, ipady=10, pady=40)
+
+        # ACADEMIC FRAME
+        self.category1frame = Frame(self.categorycentralframe, background="#1c2e3e")
+        self.category1frame.pack(padx=20, side=LEFT, expand=True, fill=X, ipady=250)
+        self.category1frame.pack_propagate(False)
+
+        self.category1frametitle = Label(self.category1frame, text="Academic", font=HEADING2, background="#1c2e3e", foreground="#ffffff")
+        self.category1frametitle.pack(anchor="center", pady=20)
+
+        scroll_y_category1 = Scrollbar(self.category1frame, orient=VERTICAL)
+        self.category1_records = ttk.Treeview (self.category1frame, height=10, columns=("Activity", "Deadline"), yscrollcommand = scroll_y_category1)
+        scroll_y_category1.pack(side="right", fill=Y)
+
+        self.category1_records.heading("Activity", text="Activity")
+        self.category1_records.heading("Deadline", text="Deadline")
+
+        self.category1_records['show'] = 'headings'
+
+        self.category1_records.column("Activity", width=30)
+        self.category1_records.column("Deadline", width=30)
+
+        self.category1_records.pack(fill=BOTH, expand=1)
+
+        self.fetchCategory1Data()
+
+        # ENTERTAINMENT FRAME
+        self.category2frame = Frame(self.categorycentralframe, background="#1c2e3e")
+        self.category2frame.pack(padx=20, side=LEFT, expand=True, fill=X, ipady=250)
+        self.category2frame.pack_propagate(False)
+
+        self.category2frametitle = Label(self.category2frame, text="Entertainment", font=HEADING2, background="#1c2e3e", foreground="#ffffff")
+        self.category2frametitle.pack(anchor="center", pady=20)
+
+        scroll_y_category2 = Scrollbar(self.category2frame, orient=VERTICAL)
+        self.category2_records = ttk.Treeview (self.category2frame, height=10, columns=("Activity", "Deadline"), yscrollcommand = scroll_y_category2)
+        scroll_y_category2.pack(side="right", fill=Y)
+
+        self.category2_records.heading("Activity", text="Activity")
+        self.category2_records.heading("Deadline", text="Deadline")
+
+        self.category2_records['show'] = 'headings'
+
+        self.category2_records.column("Activity", width=30)
+        self.category2_records.column("Deadline", width=30)
+
+        self.category2_records.pack(fill=BOTH, expand=1)
+
+        self.fetchCategory2Data()
+
+        # SOCIAL FRAME
+        self.category3frame = Frame(self.categorycentralframe, background="#1c2e3e")
+        self.category3frame.pack(padx=20, side=LEFT, expand=True, fill=X, ipady=250)
+        self.category3frame.pack_propagate(False)
+
+        self.category3frametitle = Label(self.category3frame, text="Social", font=HEADING2, background="#1c2e3e", foreground="#ffffff")
+        self.category3frametitle.pack(anchor="center", pady=20)
+
+        scroll_y_category3 = Scrollbar(self.category3frame, orient=VERTICAL)
+        self.category3_records = ttk.Treeview (self.category3frame, height=10, columns=("Activity", "Deadline"), yscrollcommand = scroll_y_category3)
+        scroll_y_category3.pack(side="right", fill=Y)
+
+        self.category3_records.heading("Activity", text="Activity")
+        self.category3_records.heading("Deadline", text="Deadline")
+
+        self.category3_records['show'] = 'headings'
+
+        self.category3_records.column("Activity", width=30)
+        self.category3_records.column("Deadline", width=30)
+
+        self.category3_records.pack(fill=BOTH, expand=1)
+
+        self.fetchCategory3Data()
+
+        # OTHERs FRAME
+        self.category4frame = Frame(self.categorycentralframe, background="#1c2e3e")
+        self.category4frame.pack(padx=20, side=LEFT, expand=True, fill=X, ipady=250)
+        self.category4frame.pack_propagate(False)
+
+        self.category4frametitle = Label(self.category4frame, text="Others", font=HEADING2, background="#1c2e3e", foreground="#ffffff")
+        self.category4frametitle.pack(anchor="center", pady=20)
+
+        scroll_y_category4 = Scrollbar(self.category4frame, orient=VERTICAL)
+        self.category4_records = ttk.Treeview (self.category4frame, height=10, columns=("Activity", "Deadline"), yscrollcommand = scroll_y_category4)
+        scroll_y_category4.pack(side="right", fill=Y)
+
+        self.category4_records.heading("Activity", text="Activity")
+        self.category4_records.heading("Deadline", text="Deadline")
+
+        self.category4_records['show'] = 'headings'
+
+        self.category4_records.column("Activity", width=30)
+        self.category4_records.column("Deadline", width=30)
+
+        self.category4_records.pack(fill=BOTH, expand=1)
+
+        self.fetchCategory4Data()
+    
+    def fetchCategory1Data(self):
+        self.category1_records.delete(*self.category1_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Academic")
+
+        if len(result) != 0:
+            self.category1_records.delete(*self.category1_records.get_children())
+            for row in result:
+                self.category1_records.insert('', END, values= row)
+
+    def fetchCategory2Data(self):
+        self.category2_records.delete(*self.category2_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Entertainment")
+
+        if len(result) != 0:
+            self.category2_records.delete(*self.category2_records.get_children())
+            for row in result:
+                self.category2_records.insert('', END, values= row)
+
+    def fetchCategory3Data(self):
+        self.category3_records.delete(*self.category3_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Social")
+
+        if len(result) != 0:
+            self.category3_records.delete(*self.category3_records.get_children())
+            for row in result:
+                self.category3_records.insert('', END, values= row)
+
+    def fetchCategory4Data(self):
+        self.category4_records.delete(*self.category4_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Others")
+
+        if len(result) != 0:
+            self.category4_records.delete(*self.category4_records.get_children())
+            for row in result:
+                self.category4_records.insert('', END, values= row)
+
+    def refetchData(self):
+        self.fetchCategory1Data()
+        self.fetchCategory2Data()
+        self.fetchCategory3Data()
+        self.fetchCategory4Data()
     
