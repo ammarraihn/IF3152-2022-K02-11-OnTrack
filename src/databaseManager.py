@@ -13,7 +13,7 @@ class databaseManager():
         cursor = mydb.cursor()
 
         if (val != ''):
-            sql = "DELETE FROM List_of_Activities WHERE ActivityID = %s"
+            sql = "DELETE FROM list_of_activities WHERE ActivityID = %s"
             cursor.execute(sql, [val[0]])
         mydb.commit()
         mydb.close()
