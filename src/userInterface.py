@@ -276,3 +276,49 @@ class Completed(tk.Frame):
 
         self.fetchCategory4Data()
     
+    def fetchCategory1Data(self):
+        self.category1_records.delete(*self.category1_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Academic")
+
+        if len(result) != 0:
+            self.category1_records.delete(*self.category1_records.get_children())
+            for row in result:
+                self.category1_records.insert('', END, values= row)
+
+    def fetchCategory2Data(self):
+        self.category2_records.delete(*self.category2_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Entertainment")
+
+        if len(result) != 0:
+            self.category2_records.delete(*self.category2_records.get_children())
+            for row in result:
+                self.category2_records.insert('', END, values= row)
+
+    def fetchCategory3Data(self):
+        self.category3_records.delete(*self.category3_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Social")
+
+        if len(result) != 0:
+            self.category3_records.delete(*self.category3_records.get_children())
+            for row in result:
+                self.category3_records.insert('', END, values= row)
+
+    def fetchCategory4Data(self):
+        self.category4_records.delete(*self.category4_records.get_children()) # Reset treeviewnya
+
+        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Others")
+
+        if len(result) != 0:
+            self.category4_records.delete(*self.category4_records.get_children())
+            for row in result:
+                self.category4_records.insert('', END, values= row)
+
+    def refetchData(self):
+        self.fetchCategory1Data()
+        self.fetchCategory2Data()
+        self.fetchCategory3Data()
+        self.fetchCategory4Data()
+    
