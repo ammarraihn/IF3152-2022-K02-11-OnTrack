@@ -16,7 +16,27 @@ class manageActivity(tk.Tk):
         pass
 
     def markAsComplete(self, ):
-        pass
+        vals = [(self.parent.ongoing_records.item(self.parent.ongoing_records.focus()))['values'], # nama kegiatan yang diselect di tree ongoing_records
+                (self.parent.idle_records.item(self.parent.idle_records.focus()))['values']] # nama kegiatan yang diselect di tree idle_records
+
+        if vals != vals[0] == '' and vals[1] == '':
+            messagebox.showerror("Mark as Complete", "Please select an activity to mark as complete")
+        else:
+            self.activityModel.completeInDb(vals)
+
+            self.parent.fetchOngoingData()
+            self.parent.fetchIdleData()
+            
+
+            if not (vals[0] == '' and vals[1] == ''):
+                messagebox.showinfo("Mark as Complete", "Congrats, you've completed an activity!")
+
+            # Reset selection
+            for item in self.parent.ongoing_records.selection():
+                self.parent.ongoing_records.selection_remove(item)
+
+            for item in self.parent.idle_records.selection():
+                self.parent.idle_records.selection_remove(item)
             
 
 

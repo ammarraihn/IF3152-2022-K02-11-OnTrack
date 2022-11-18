@@ -12,7 +12,15 @@ class databaseManager():
         pass
 
     def completeInDb(self, vals):
-        pass
+        mydb = mysql.connector.connect(host = "localhost", user = "root", password = "qwerty123", database = "ontrack", auth_plugin = "mysql_native_password")
+        cursor = mydb.cursor()
+
+        for val in vals:
+            if (val != ''):
+                sql = "UPDATE list_of_activities SET isDone = TRUE WHERE ActivityID = %s"
+                cursor.execute(sql, [val[0]])
+        mydb.commit()
+        mydb.close()
 
     def selectOngoingDb(self):
         pass
