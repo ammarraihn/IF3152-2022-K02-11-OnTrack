@@ -17,7 +17,7 @@ class databaseManager():
 
         for val in vals:
             if (val != ''):
-                sql = "UPDATE List_of_Activities SET isDone = TRUE WHERE ActivityID = %s"
+                sql = "UPDATE list_of_activities SET isDone = TRUE WHERE ActivityID = %s"
                 cursor.execute(sql, [val[0]])
         mydb.commit()
         mydb.close()
