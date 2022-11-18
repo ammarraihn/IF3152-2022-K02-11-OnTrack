@@ -5,9 +5,10 @@ from datetime import date
 
 
 class manageActivity(tk.Tk):
-    def __init__(self, parent):
+    def __init__(self, parent, databaseManager):
         tk.Frame.__init__(self, parent)
         self.parent = parent
+        self.databaseManager = databaseManager
 
     def addData(self):
         try:
@@ -16,7 +17,7 @@ class manageActivity(tk.Tk):
             elif (self.parent.deadline.get() < str(date.today())):
                 messagebox.showwarning("Add Activity Form", "Deadline is in the past, please enter a valid deadline")
             else:
-                self.activityModel.addToDb(  self.parent.activityName.get(), 
+                self.databaseManager.addToDb(  self.parent.activityName.get(), 
                                         self.parent.category.get(),
                                         self.parent.deadline.get())
                 self.parent.fetchOngoingData()
@@ -37,7 +38,7 @@ class manageActivity(tk.Tk):
             ask = messagebox.askyesno("Delete Activity", "Are you sure you want to delete this activity?")
             
             if ask > 0:
-                self.activityModel.delInDb(vals)
+                self.databaseManager.delInDb(vals)
                 self.parent.fetchOngoingData()
                 self.parent.fetchIdleData()
                 
@@ -62,7 +63,7 @@ class manageActivity(tk.Tk):
         if vals != vals[0] == '' and vals[1] == '':
             messagebox.showerror("Mark as Complete", "Please select an activity to mark as complete")
         else:
-            self.activityModel.completeInDb(vals)
+            self.databaseManager.completeInDb(vals)
 
             self.parent.fetchOngoingData()
             self.parent.fetchIdleData()

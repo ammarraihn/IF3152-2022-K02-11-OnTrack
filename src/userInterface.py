@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from manageActivity import manageActivity
 import tkinter as tk
+from databaseManager import databaseManager
 
 HEADING1 = ('Poppins', 20, 'bold')
 HEADING2 = ('Poppins', 14)
@@ -17,7 +18,7 @@ class Dashboard(tk.Frame):
         self.category = StringVar()
         self.deadline = StringVar()
 
-        self.manageAct = manageActivity(self)
+        self.manageAct = manageActivity(self, databaseManager())
 
         #================================== Dashboard Frame ==================================
 
@@ -155,7 +156,7 @@ class Dashboard(tk.Frame):
     def fetchOngoingData(self):
         self.ongoing_records.delete(*self.ongoing_records.get_children()) # Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectOngoingDb()
+        result = self.manageAct.databaseManager.selectOngoingDb()
 
         if len(result) != 0:
             self.ongoing_records.delete(*self.ongoing_records.get_children())
@@ -167,7 +168,7 @@ class Dashboard(tk.Frame):
     def fetchIdleData(self): 
         self.idle_records.delete(*self.idle_records.get_children())# Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectIdleDb()
+        result = self.manageAct.databaseManager.selectIdleDb()
         
         if len(result) != 0:
             self.idle_records.delete(*self.idle_records.get_children())
@@ -184,7 +185,7 @@ class Completed(tk.Frame):
         tk.Frame.__init__(self, parent, background="#1c2e3e")
         self.controller = controller
 
-        self.manageAct = manageActivity(self)#, modelActivity()) ->belum ada modelnya
+        self.manageAct = manageActivity(self, databaseManager())
 
         #===================== Completed Frame =====================
 
@@ -296,7 +297,7 @@ class Completed(tk.Frame):
     def fetchCategory1Data(self):
         self.category1_records.delete(*self.category1_records.get_children()) # Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Academic")
+        result = self.manageAct.databaseManager.selectCompletedByCategoryDb("Academic")
 
         if len(result) != 0:
             self.category1_records.delete(*self.category1_records.get_children())
@@ -306,7 +307,7 @@ class Completed(tk.Frame):
     def fetchCategory2Data(self):
         self.category2_records.delete(*self.category2_records.get_children()) # Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Entertainment")
+        result = self.manageAct.databaseManager.selectCompletedByCategoryDb("Entertainment")
 
         if len(result) != 0:
             self.category2_records.delete(*self.category2_records.get_children())
@@ -316,7 +317,7 @@ class Completed(tk.Frame):
     def fetchCategory3Data(self):
         self.category3_records.delete(*self.category3_records.get_children()) # Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Social")
+        result = self.manageAct.databaseManager.selectCompletedByCategoryDb("Social")
 
         if len(result) != 0:
             self.category3_records.delete(*self.category3_records.get_children())
@@ -326,7 +327,7 @@ class Completed(tk.Frame):
     def fetchCategory4Data(self):
         self.category4_records.delete(*self.category4_records.get_children()) # Reset treeviewnya
 
-        result = self.manageAct.activityModel.selectCompletedByCategoryDb("Others")
+        result = self.manageAct.databaseManager.selectCompletedByCategoryDb("Others")
 
         if len(result) != 0:
             self.category4_records.delete(*self.category4_records.get_children())
