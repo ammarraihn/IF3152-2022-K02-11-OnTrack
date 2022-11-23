@@ -12,6 +12,9 @@ Aplikasi ini bernama OnTrack, yaitu aplikasi yang ditujukan untuk melakukan penc
 Terdapat 5 fitur yang diimplementasikan, namun secara garis besar terdapat 3 modul utama yaitu modul controller dengan nama file manageAcitvity.py untuk me-manage aktivitas yang berisikan fitur add aktivitas, delete aktivitas, mark as complete aktivitas. Modul berikutnya adalah modul entity dengan nama file databaseManager.py untuk me-manage aktivitas dalam database. Modul terakhir adalah modul boundary dengan nama file userInterface.py yang berisikan dashboard yang menampilkan daftar aktivitas hari ini dan yang akan datang dan completed page yang menampilkan daftar aktivitas yang telah selesai.
 
 ## Cara menjalankan aplikasi
+1. Import ontrack.sql ke database mysql
+2. Gunakana password "root" untuk user "root" pada mysql
+3. Run executable file (OnTrack.exe)
 
 ## Daftar Modul yang diimplementasi
 1. Add Activity
