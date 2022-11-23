@@ -44,16 +44,17 @@ class mainApp(tk.Tk):
         
 
         # COMPLETED BUTTON
-        completed = Button(self.header, text="Completed", padx=20, pady=12, font=('Poppins', 14), borderwidth=0, background="#1c2e3e", fg="white")
+        completed = Button(self.header, text="Completed", command=lambda: self.show_frame(Completed), padx=20, pady=12, font=('Poppins', 14), borderwidth=0, background="#1c2e3e", fg="white")
         completed.pack(side=RIGHT, padx=50)
 
         # DASHBOARD BUTTON
-        completed = Button(self.header, text="Dashboard", padx=20, pady=12, font=('Poppins', 14), borderwidth=0, background="#1c2e3e", fg="white")
+        completed = Button(self.header, text="Dashboard", command=lambda: self.show_frame(Dashboard), padx=20, pady=12, font=('Poppins', 14), borderwidth=0, background="#1c2e3e", fg="white")
         completed.pack(side=RIGHT, padx=50)
         
 
     def show_frame(self, cont):
         frame = self.frames[cont]
+        frame.refetchData()
         frame.tkraise()
         
 
