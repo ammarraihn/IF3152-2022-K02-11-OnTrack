@@ -17,51 +17,53 @@ Terdapat 5 fitur yang diimplementasikan, namun secara garis besar terdapat 3 mod
 3. Run executable file (OnTrack.exe)
 
 ## Daftar Modul yang diimplementasi
-1. Add Activity
+**1. Add Activity**
 
-    NIM Penanggung Jawab : 18220022
-    Nama Penaggung Jawab : Kofifan Hertza H
+    NIM Penanggung Jawab : 18220022  
+    Nama Penanggung Jawab : Kofifan Hertza H
 
-2. Delete Activity
+**2. Delete Activity, Unit Testing dan Setup CI**
 
-    NIM Penanggung Jawab : 18220042
-    Nama Penaggung Jawab : Faris Tristan Fabian
+    NIM Penanggung Jawab : 18220042  
+    Nama Penanggung Jawab : Faris Tristan Fabian
 
-3. Mark as Complete
+**3. Mark as Complete**
 
-    NIM Penanggung Jawab : 18220072
-    Nama Penaggung Jawab : Muhammad Ammar M
+    NIM Penanggung Jawab : 18220072 
+    Nama Penanggung Jawab : Muhammad Ammar M
 
-4. Complete Page
+**4. Complete Page**
 
-    NIM Penanggung Jawab : 18220082
-    Nama Penaggung Jawab : Sitanggang Jerry Josia P
+    NIM Penanggung Jawab : 18220082 
+    Nama Penanggung Jawab : Sitanggang Jerry Josia P
+Screen Capture:
 
-    Screen Capture:
+![CompletedPage](doc/SS_CompletedPage.png)
 
-    ![CompletedPage](doc/SS_CompletedPage.png)
+**5. Dashboard, Database**
 
-5. Dashboard
+    NIM Penanggung Jawab : 18220044 
+    Nama Penanggung Jawab : Ammar Raihan
+Screen Capture:
 
-    NIM Penanggung Jawab : 18220044
-    Nama Penaggung Jawab : Ammar Raihan
-
-    Screen Capture:
-
-    ![Dashboard](doc/SS_Dashboard.png)
-    ![Dashboard](doc/SS_AddActivityForm.png)
+![Dashboard](doc/SS_Dashboard.png)
+![Dashboard](doc/SS_AddActivityForm.png)
 
 
 ## Daftar Tabel Basis Data yang Diimplementasi
+
 1. List_of_Activities:
 
-    ActivityID INT
-    ActivityName VARCHAR(255)
-    Deadline DATE
-    CategoryName VARCHAR(255)
-    isDone TINYINT(1)
+    | Kolom  | Tipe |
+    | ------------- | ------------- |
+    | ActivityID  | VARCHAR(255)  |
+    | ActivityName  | VARCHAR(255)  |
+    | Deadline  | DATE  |
+    | CategoryName  | VARCHAR(255)  |
+    | isDone  | TINYINT(1)  |
 
 2. List_of_Categories:
-
-    CategoryID INT 
-    CategoryName VARCHAR(255)
+    | Kolom  | Tipe |
+    | ------------- | ------------- |
+    | CategoryID  | INT   |
+    | CategoryName  | VARCHAR(255)  |
